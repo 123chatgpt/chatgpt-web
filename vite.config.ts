@@ -37,7 +37,8 @@ export default defineConfig((env) => {
       open: false,
       proxy: {
         '/api': {
-          target: viteEnv.VITE_APP_API_BASE_URL,
+          // target: viteEnv.VITE_APP_API_BASE_URL,
+          target: 'http://123chatgpt.cc',
           changeOrigin: true, // 允许跨域
           rewrite: path => path.replace('/api/', '/'),
         },
