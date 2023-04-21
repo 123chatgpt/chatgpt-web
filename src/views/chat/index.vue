@@ -3,7 +3,7 @@ import type { Ref } from 'vue'
 import { computed, onMounted, onUnmounted, ref } from 'vue'
 import { useRoute } from 'vue-router'
 import { storeToRefs } from 'pinia'
-import { NAutoComplete, NButton, NInput, useDialog, useMessage } from 'naive-ui'
+import { NAutoComplete, NButton, NImage, NInput, useDialog, useMessage } from 'naive-ui'
 import html2canvas from 'html2canvas'
 import { Message } from './components'
 import { useScroll } from './hooks/useScroll'
@@ -16,6 +16,7 @@ import { useBasicLayout } from '@/hooks/useBasicLayout'
 import { useChatStore, usePromptStore } from '@/store'
 import { fetchChatAPIProcess } from '@/api'
 import { t } from '@/locales'
+import wechatGroupImg from '@/assets/WechatGroup.jpeg'
 
 let controller = new AbortController()
 
@@ -485,6 +486,17 @@ onUnmounted(() => {
             <div class="flex items-center justify-center mt-4 text-center text-neutral-300">
               <SvgIcon icon="ri:bubble-chart-fill" class="mr-2 text-3xl" />
               <span>Aha~</span>
+            </div>
+            <div class="tips-wrap flex flex-col items-center mt-4">
+              <div class="tips flex flex-col items-center mb-4">
+                <span>本网站在国家安全政策及费用承受范围之内，承诺永久免费</span>
+                <span>本网站致力于AI的推广布道</span>
+                <span>欢迎志同道合的同学一起参与，一起探讨学习</span>
+              </div>
+              <NImage
+                width="300"
+                :src="wechatGroupImg"
+              />
             </div>
           </template>
           <template v-else>

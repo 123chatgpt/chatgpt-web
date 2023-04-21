@@ -6,13 +6,14 @@ import List from './List.vue'
 import Footer from './Footer.vue'
 import { useAppStore, useChatStore } from '@/store'
 import { useBasicLayout } from '@/hooks/useBasicLayout'
-import { PromptStore } from '@/components/common'
+import { Donate, PromptStore } from '@/components/common'
 
 const appStore = useAppStore()
 const chatStore = useChatStore()
 
 const { isMobile } = useBasicLayout()
 const show = ref(false)
+const showDonateModal = ref(false)
 
 const collapsed = computed(() => appStore.siderCollapsed)
 
@@ -83,6 +84,11 @@ watch(
           <NButton block @click="show = true">
             {{ $t('store.siderButton') }}
           </NButton>
+          <div class="mt-2">
+            <NButton block @click="showDonateModal = true">
+              {{ '捐赠' }}
+            </NButton>
+          </div>
         </div>
       </main>
       <Footer />
@@ -92,4 +98,27 @@ watch(
     <div v-show="!collapsed" class="fixed inset-0 z-40 bg-black/40" @click="handleUpdateCollapsed" />
   </template>
   <PromptStore v-model:visible="show" />
+  <template v-if="!isMobile">
+    <Donate v-model:visible="showDonateModal" />
+    <!-- <NModal v-model:show="showModal" style="width: 90%; max-width: 900px;" preset="card">
+      <div class="flex flex-col items-center space-y-4">
+        <div class="flex flex-col items-center mb-4">
+          <span>服务器昂贵，接口昂贵，但网站免费</span>
+          <span>如果您觉得做的好，可以给我买一瓶冰阔落～</span>
+        </div>
+        <NImageGroup show-toolbar-tooltip>
+          <n-space>
+            <NImage
+              width="100"
+              src="https://07akioni.oss-cn-beijing.aliyuncs.com/07akioni.jpeg"
+            />
+            <NImage
+              width="100"
+              src="https://gw.alipayobjects.com/zos/antfincdn/aPkFc8Sj7n/method-draw-image.svg"
+            />
+          </n-space>
+        </NImageGroup>
+      </div>
+    </NModal> -->
+  </template>
 </template>
